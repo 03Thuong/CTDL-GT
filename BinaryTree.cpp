@@ -9,6 +9,15 @@ typedef struct TNode
 
 typedef TNode* TREE;
 
+//Tao node moi
+TNode* createNewNode(int data)
+{
+	TNode* node = new TNode; 	
+	node->key = data;	
+	node->pLeft = NULL;
+	node->pRight = NULL;		
+	return node;
+}
 
 int main()
 {
