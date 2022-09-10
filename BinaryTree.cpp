@@ -46,6 +46,20 @@ TNode* insert(TNode  *Root, int data)
 	return Root;	
 }
 
+// Duyet cay theo thu tu giua
+void NLR(TNode* Root)
+{
+	if (Root !=NULL)
+	{
+		
+		printf("%d ", Root->key);
+		
+		NLR(Root->pLeft);		
+		NLR(Root->pRight);
+	}
+	
+}
+
 int main()
 {
 	TREE myTree =NULL;
@@ -58,6 +72,10 @@ int main()
 	myTree =insert(myTree, 14);
 	myTree =insert(myTree, 4);
 	myTree =insert(myTree, 6);
+    printf("\n\n============================\n");
+	printf("Duyet cay theo thu tu giua\n");
+	NLR(myTree);
+
 	return 0;
 
 }
