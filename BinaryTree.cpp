@@ -102,6 +102,20 @@ int CountNodeOneChild(TNode *Root)
     return 0;
 }
 
+// dem so nut co dung 2 cay con
+int CountNodeTwoChild(TNode *Root)
+{
+    if (Root!=NULL)
+    {
+        int a = CountNodeOneChild(Root->pLeft);
+        int b = CountNodeOneChild(Root->pRight);
+        if ((Root->pLeft != NULL) && (Root->pRight != NULL)) 
+            return 1 + a + b;
+        return a + b;
+    }
+    return 0;
+}
+
 int main()
 {
 	TREE myTree =NULL;
@@ -120,6 +134,8 @@ int main()
     printf("\n\nSo node tren cay la %d\n", countNode(myTree));
 	printf("\n\nSo leafnode tren cay la %d", countLeafNode(myTree));
     printf("\n\nSo Node co dung 1 cay con la %d", CountNodeOneChild(myTree));
+	printf("\n\nSo Node co dung 2 cay con la %d", CountNodeTwoChild(myTree));
+	
 	
 	return 0;
 
