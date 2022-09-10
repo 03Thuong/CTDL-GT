@@ -60,6 +60,19 @@ void NLR(TNode* Root)
 	
 }
 
+// Dem so node tren cay
+int countNode(TNode *Root)
+{
+	int count = 0;
+	if (Root !=NULL)
+	{
+		count ++;
+		
+		count+= countNode(Root->pLeft);		
+		count+= countNode(Root->pRight);
+	}
+	return count;
+}
 int main()
 {
 	TREE myTree =NULL;
@@ -75,6 +88,8 @@ int main()
     printf("\n\n============================\n");
 	printf("Duyet cay theo thu tu giua\n");
 	NLR(myTree);
+    printf("\n\nSo node tren cay la %d\n", countNode(myTree));
+
 
 	return 0;
 
