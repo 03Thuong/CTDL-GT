@@ -116,6 +116,21 @@ int CountNodeTwoChild(TNode *Root)
     return 0;
 }
 
+// Chieu cao cua cay
+int getTreeHeight(TNode *Root)
+{
+	if (Root ==NULL)
+		return 0;		
+	    		
+	int maxLeft = getTreeHeight(Root->pLeft);
+			
+	int maxRight = getTreeHeight(Root->pRight);	
+	
+	if (maxLeft> maxRight)
+		return maxLeft+1;
+	else
+		return maxRight+1;
+}
 int main()
 {
 	TREE myTree =NULL;
@@ -135,7 +150,7 @@ int main()
 	printf("\n\nSo leafnode tren cay la %d", countLeafNode(myTree));
     printf("\n\nSo Node co dung 1 cay con la %d", CountNodeOneChild(myTree));
 	printf("\n\nSo Node co dung 2 cay con la %d", CountNodeTwoChild(myTree));
-	
+	printf("\n\nChieu cao cua cay la %d", getTreeHeight(myTree));
 	
 	return 0;
 
