@@ -87,6 +87,21 @@ int countLeafNode(TNode *Root)
 		count+= countNode(Root->pRight);	
 	}
 }
+
+// dem so nut có dung 1 cay con
+int CountNodeOneChild(TNode *Root)
+{
+    if (Root!=NULL)
+    {
+        int a = CountNodeOneChild(Root->pLeft);
+        int b = CountNodeOneChild(Root->pRight);
+        if ((Root->pLeft != NULL && Root->pRight == NULL) || (Root->pLeft == NULL && Root->pRight != NULL))
+            return 1 + a + b;
+        return a + b;
+    }
+    return 0;
+}
+
 int main()
 {
 	TREE myTree =NULL;
@@ -104,7 +119,8 @@ int main()
 	NLR(myTree);
     printf("\n\nSo node tren cay la %d\n", countNode(myTree));
 	printf("\n\nSo leafnode tren cay la %d", countLeafNode(myTree));
-
+    printf("\n\nSo Node co dung 1 cay con la %d", CountNodeOneChild(myTree));
+	
 	return 0;
 
 }
