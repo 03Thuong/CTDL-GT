@@ -131,6 +131,20 @@ int getTreeHeight(TNode *Root)
 	else
 		return maxRight+1;
 }
+
+//So node co khoa nho hon X
+int countNodeNHX(TNode *Root, int x)
+{
+	int count=0;
+	if (Root == NULL) 
+		return 0;
+	if (Root->key < x) 
+		count++;
+	count+= countNodeNHX(Root->pLeft, x);		
+	count+= countNodeNHX(Root->pRight, x);
+	return count;
+}
+
 int main()
 {
 	TREE myTree =NULL;
@@ -152,6 +166,8 @@ int main()
 	printf("\n\nSo Node co dung 2 cay con la %d", CountNodeTwoChild(myTree));
 	printf("\n\nChieu cao cua cay la %d", getTreeHeight(myTree));
 	
+	int x = 8;
+	printf("\n\nSo node co khoa nho hon x la %d", countNodeNHX(myTree, x));
 	return 0;
 
 }
