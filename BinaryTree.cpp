@@ -132,7 +132,7 @@ int getTreeHeight(TNode *Root)
 		return maxRight+1;
 }
 
-//So node co khoa nho hon X
+//Dem so node co khoa nho hon X
 int countNodeNHX(TNode *Root, int x)
 {
 	int count=0;
@@ -145,7 +145,7 @@ int countNodeNHX(TNode *Root, int x)
 	return count;
 }
 
-//So node co khoa lon hon X
+//Dem so node co khoa lon hon X
 int countNodeLHX(TNode *Root, int x)
 {
 	int count=0;
@@ -158,6 +158,18 @@ int countNodeLHX(TNode *Root, int x)
 	return count;
 }
 
+//Dem so node co khoa lon hon X va nho hon Y
+int countNodeXY(TNode *Root, int x, int y)
+{
+	int count=0;
+	if (Root == NULL) 
+		return 0; 
+	if ((Root->key > x) && (Root->key < y)) 
+		count++;
+	count+= countNodeXY(Root->pLeft, x, y);		
+	count+= countNodeXY(Root->pRight, x, y);
+	return count;
+}
 int main()
 {
 	TREE myTree =NULL;
@@ -182,7 +194,8 @@ int main()
 	int x = 8, y = 10;
 	printf("\n\nSo node co khoa nho hon x la %d", countNodeNHX(myTree, x));
 	printf("\n\nSo node co khoa lon hon x la %d", countNodeLHX(myTree, x));
-	
+	printf("\n\nSo node co khoa lon hon x va nho hon y la %d", countNodeXY(myTree, x, y));
+
 	return 0;
 
 }
