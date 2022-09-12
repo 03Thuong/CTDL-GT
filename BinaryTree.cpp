@@ -233,6 +233,16 @@ TNode *deleteNode(TNode *Root, int key) {
   return Root;
 }
 
+//Huy toan bo cay nhi phan tim kiem
+void removeTree(TNode *Root)
+{
+	if(Root)
+	{
+		removeTree(Root->pLeft);
+		removeTree(Root->pRight);
+		delete(Root);
+	}
+}
 
 int main()
 {
@@ -266,6 +276,8 @@ int main()
 	printf("\nSau khi delete nut 12\n");
 	deleteNode(myTree, 12);
 	NLR(myTree);
+	printf("\n\nHuy toan bo cay nhi phan tim kiem");
+	removeTree(myTree);
 	return 0;
 
 }
