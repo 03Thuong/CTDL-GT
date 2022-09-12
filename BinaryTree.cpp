@@ -170,6 +170,22 @@ int countNodeXY(TNode *Root, int x, int y)
 	count+= countNodeXY(Root->pRight, x, y);
 	return count;
 }
+
+// Tim phan tu tai 1 muc
+void printGivenLevel(TNode *Root, int level)
+{
+    if (Root == NULL)
+        return;        
+        
+    if (level == 1)
+        printf("%d ", Root->key);    
+    else if (level > 1)
+    {
+        printGivenLevel(Root->pLeft, level-1);
+        printGivenLevel(Root->pRight, level-1);
+    }
+}	
+
 int main()
 {
 	TREE myTree =NULL;
@@ -195,7 +211,8 @@ int main()
 	printf("\n\nSo node co khoa nho hon x la %d", countNodeNHX(myTree, x));
 	printf("\n\nSo node co khoa lon hon x la %d", countNodeLHX(myTree, x));
 	printf("\n\nSo node co khoa lon hon x va nho hon y la %d", countNodeXY(myTree, x, y));
-
+    printf("\n\nCac nut o muc 3 la ");
+	printGivenLevel(myTree,  3);
 	return 0;
 
 }
