@@ -186,6 +186,54 @@ void printGivenLevel(TNode *Root, int level)
     }
 }	
 
+// Huy 1 phan tu co khoa K
+// Find the inorder successor
+TNode * minValueNode(TNode *node) {
+  TNode *current = node;
+
+ // Find the leftmost leaf
+  while (current && current->pLeft != NULL)
+    current = current->pLeft;
+
+  return current;
+}
+
+// Deleting a node
+TNode *deleteNode(TNode *Root, int key) {
+  // Return if the tree is empty
+  if (Root == NULL) return Root;
+
+  // Find the node to be deleted
+  if (key < Root->key)
+    Root->pLeft = deleteNode(Root->pLeft, key);
+  else if (key > Root->key)
+    Root->pRight = deleteNode(Root->pRight, key);
+
+  else {
+    // If the node is with only one child or no child
+    if (Root->pLeft == NULL) {
+      TNode *temp = Root->pRight;
+      delete(Root);
+      return temp;
+    } else if (Root->pRight == NULL) {
+      TNode *temp = Root->pLeft;
+      delete(Root);
+      return temp;
+    }
+
+    // If the node has two children
+    TNode *temp = minValueNode(Root->pRight);
+
+    // Place the inorder successor in position of the node to be deleted
+    Root->key = temp->key;
+
+    // Delete the inorder successor
+    Root->pRight = deleteNode(Root->pRight, temp->key);
+  }
+  return Root;
+}
+
+
 int main()
 {
 	TREE myTree =NULL;
@@ -213,6 +261,11 @@ int main()
 	printf("\n\nSo node co khoa lon hon x va nho hon y la %d", countNodeXY(myTree, x, y));
     printf("\n\nCac nut o muc 3 la ");
 	printGivenLevel(myTree,  3);
+    
+	printf("\n============================\n");
+	printf("\nSau khi delete nut 12\n");
+	deleteNode(myTree, 12);
+	NLR(myTree);
 	return 0;
 
 }
